@@ -14,12 +14,13 @@ class Task
     private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ,string $title;
+    private string $title;
 
      #[ORM\Column(type: 'boolean')]
-     private ,boolean $completed = false;
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+     private bool $completed = false;
+
+    // Getters
+     public function getId(): ?int{return $this->id;}
+    public function getTitle() : string { return $this->title; }
+    public function getStatus(): boolean { return $this->completed; }
 }
