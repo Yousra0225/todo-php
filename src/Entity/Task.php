@@ -28,5 +28,11 @@ class Task
     public function setTitle(string $title): void { $this->title = $title;}
     public function setStatus(bool $completed): void {$this->completed = $completed;}
 
+    /**
+     * method to check if the task is completed
+     * @return bool
+     */
+    public function isCompleted(): bool { return $this->completed; }
+
 
 }
