@@ -24,4 +24,21 @@ class TaskController extends AbstractController
         return $this->json($data);
     }
 
+    #[Route('', methods: ['POST'])]
+    public function create(Request $request, EntityManagerInterface $em): \Symfony\Component\HttpFoundation\JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
 
+        if (!isset($data['title'])) {
+            return $this->json(['error' => 'Missing title'], Response::HTTP_BAD_REQUEST);
+        }
+
+        $task = new Task();
+        $task->setTitle($data['title']);
+        $task->setStatus($data['completed'] ?? false);
+
+        $em->persist($task);
+        $em->flush();
+
+        return $this->json(['message' => 'Task created', 'id' => $task->getId()], Response::HTTP_CREATED);
+    }
