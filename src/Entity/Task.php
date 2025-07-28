@@ -23,4 +23,10 @@ class Task
      public function getId(): ?int{return $this->id;}
     public function getTitle() : string { return $this->title; }
     public function getStatus(): boolean { return $this->completed; }
+
+    //  and Setters
+    public function setTitle(string $title): void { $this->title = $title;}
+    public function setStatus(bool $completed): void {$this->completed = $completed;}
+
+
 }
